@@ -6,9 +6,6 @@ Um sistema completo e **100% seguro** para análise de turnover de RH, com proce
 
 👉 **[Acesse a Aplicação](https://derektsc.github.io/turnover-analytics-dashboard/)**
 
-![Dashboard Preview](![image](https://github.com/user-attachments/assets/fa6206ce-80e5-4425-9258-a9e9fbff5bb0)
-)
-
 ## ✨ **Principais Características**
 
 ### 🔒 **100% Seguro**
