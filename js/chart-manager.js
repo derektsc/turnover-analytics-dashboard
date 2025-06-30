@@ -443,7 +443,7 @@ class ChartManager {
         });
 
         const datasets = [];
-        const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe'];
+        const colors = ['#DA627D', '#A53860', '#8B2635', '#B85A6E', '#C46B7A', '#7A4B5C'];
         let colorIndex = 0;
 
         const allMonths = new Set();
@@ -677,7 +677,7 @@ class ChartManager {
         });
 
         const datasets = [];
-        const colors = ['#4facfe', '#00f2fe', '#667eea', '#764ba2', '#f093fb', '#f5576c'];
+        const colors = ['#DA627D', '#A53860', '#8B2635', '#B85A6E', '#C46B7A', '#7A4B5C'];
         let colorIndex = 0;
 
         const allMonths = new Set();
