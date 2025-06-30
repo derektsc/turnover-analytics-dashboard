@@ -881,6 +881,7 @@ class ChartManager {
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value ? value.toFixed(2) + '%' : ''
                 }
             },
@@ -913,6 +914,7 @@ class ChartManager {
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value ? value.toFixed(2) + '%' : ''
                 }
             },
@@ -974,13 +976,14 @@ class ChartManager {
                 datalabels: {
                     display: true,
                     anchor: 'end',
-                    align: 'top',
+                    align: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     borderColor: 'rgba(0, 0, 0, 0.1)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
@@ -1048,13 +1051,14 @@ class ChartManager {
                 datalabels: {
                     display: true,
                     anchor: 'end',
-                    align: 'top',
+                    align: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     borderColor: 'rgba(0, 0, 0, 0.1)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
@@ -1093,7 +1097,7 @@ class ChartManager {
         return {
             responsive: true,
             maintainAspectRatio: false,
-            indexAxis: 'y', // Esta linha faz as barras ficarem horizontais
+            indexAxis: 'y',
             plugins: {
                 title: { 
                     display: true, 
@@ -1107,34 +1111,31 @@ class ChartManager {
                 tooltip: {
                     callbacks: {
                         title: (context) => {
-                            // Mostrar o nome completo do motivo no tooltip
-                            return motivos[context[0].dataIndex];
+                            const originalIndex = context[0].dataIndex;
+                            return motivos[originalIndex] || context[0].label;
                         },
                         afterLabel: (context) => {
-                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                            if (total > 0) {
-                                const percentage = ((context.parsed.x / total) * 100).toFixed(1);
-                                return `${percentage}% do total do ano`;
-                            }
-                            return '';
+                            const originalIndex = context.dataIndex;
+                            return `Motivo completo: ${motivos[originalIndex] || context.label}`;
                         }
                     }
                 },
                 datalabels: {
                     display: true,
-                    anchor: 'end',
-                    align: 'right', // Mudado de 'top' para 'right' para barras horizontais
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                    anchor: 'end', // Centralizar dentro da barra
+                    align: 'center',  // Alinhar no centro
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Fundo branco semi-transparente
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
             scales: {
-                x: { // Mudado de 'y' para 'x' para barras horizontais
+                x: {
                     beginAtZero: true,
                     title: { 
                         display: true, 
@@ -1143,13 +1144,12 @@ class ChartManager {
                     },
                     ticks: { stepSize: 1 }
                 },
-                y: { // Mudado de 'x' para 'y' para barras horizontais
+                y: {
                     title: { 
                         display: true, 
                         text: 'Motivo de Desligamento', 
                         font: { size: 14, weight: 'bold' } 
                     }
-                    // Removido maxRotation e minRotation para barras horizontais
                 }
             },
             interaction: { intersect: false, mode: 'index' },
@@ -1166,13 +1166,14 @@ class ChartManager {
                 legend: { position: 'top', labels: { font: { size: 14 } } },
                 datalabels: {
                     display: true,
-                    align: 'top',
+                    align: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     borderColor: 'rgba(0, 0, 0, 0.1)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value ? value.toFixed(2) + '%' : ''
                 }
             },
@@ -1225,13 +1226,14 @@ class ChartManager {
                 datalabels: {
                     display: true,
                     anchor: 'end',
-                    align: 'top',
+                    align: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     borderColor: 'rgba(0, 0, 0, 0.1)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
@@ -1294,13 +1296,14 @@ class ChartManager {
                 datalabels: {
                     display: true,
                     anchor: 'end',
-                    align: 'top',
+                    align: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     borderColor: 'rgba(0, 0, 0, 0.1)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
@@ -1349,28 +1352,26 @@ class ChartManager {
                 tooltip: {
                     callbacks: {
                         title: (context) => {
-                            return motivos[context[0].dataIndex];
+                            const originalIndex = context[0].dataIndex;
+                            return motivos[originalIndex] || context[0].label;
                         },
                         afterLabel: (context) => {
-                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                            if (total > 0) {
-                                const percentage = ((context.parsed.x / total) * 100).toFixed(1);
-                                return `${percentage}% do total do ano`;
-                            }
-                            return '';
+                            const originalIndex = context.dataIndex;
+                            return `Motivo completo: ${motivos[originalIndex] || context.label}`;
                         }
                     }
                 },
                 datalabels: {
                     display: true,
-                    anchor: 'end',
-                    align: 'right',
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                    anchor: 'end', // Centralizar dentro da barra
+                    align: 'center',  // Alinhar no centro
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Fundo branco semi-transparente
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000', // Texto preto para contraste
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
@@ -1478,11 +1479,18 @@ class ChartManager {
         }
         if (config.options?.plugins?.datalabels) {
             config.options.plugins.datalabels.font = { size: 14, weight: 'bold' };
+            
+            // Manter a formatação específica para gráficos de percentual
+            if (type === 'turnover' || type === 'taxaColaborador' || type === 'taxaEmpresa') {
+                config.options.plugins.datalabels.formatter = (value) => {
+                    return value ? value.toFixed(2) + '%' : '';
+                };
+            }
         }
         
         // Remover onClick
         delete config.options?.onClick;
-
+    
         this.charts.expanded = new Chart(ctx, {
             type: config.type,
             data: config.data,
@@ -1515,41 +1523,77 @@ class ChartManager {
             maintainAspectRatio: false,
             indexAxis: 'y',
             plugins: {
-                title: { display: true, text: chartTitle, font: { size: 18, weight: 'bold' } },
-                legend: { position: 'top', labels: { font: { size: 14 } } },
+                title: { 
+                    display: true, 
+                    text: chartTitle, 
+                    font: { size: 18, weight: 'bold' } 
+                },
+                legend: { 
+                    position: 'top', 
+                    labels: { font: { size: 14 } } 
+                },
                 tooltip: {
                     callbacks: {
-                        title: (context) => items[context[0].dataIndex],
+                        title: (context) => {
+                            const originalIndex = context[0].dataIndex;
+                            return items[originalIndex] || context[0].label;
+                        },
                         afterLabel: (context) => {
-                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                            if (total > 0) {
-                                const percentage = ((context.parsed.x / total) * 100).toFixed(1);
-                                return `${percentage}% do total do ano`;
-                            }
-                            return '';
+                            const originalIndex = context.dataIndex;
+                            return `Cargo completo: ${items[originalIndex] || context.label}`;
                         }
                     }
                 },
                 datalabels: {
                     display: true,
                     anchor: 'end',
-                    align: 'right',
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                    align: 'center',
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000',
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
             scales: {
                 x: {
                     beginAtZero: true,
-                    title: { display: true, text: xAxisTitle, font: { size: 14, weight: 'bold' } },
-                    ticks: { stepSize: 1 }
+                    title: { 
+                        display: true, 
+                        text: xAxisTitle, 
+                        font: { size: 14, weight: 'bold' } 
+                    },
+                    ticks: { 
+                        stepSize: 1,
+                        // Garantir que todos os valores sejam mostrados
+                        callback: function(value) {
+                            return Number.isInteger(value) ? value : '';
+                        }
+                    },
+                    // Adicionar margem extra para acomodar os datalabels
+                    afterFit: function(scale) {
+                        scale.paddingRight = 30;
+                    },
+                    // Configurar limites dinâmicos
+                    min: 0,
+                    // O max será calculado automaticamente pelo Chart.js
+                    grace: '5%' // Adiciona 5% de espaço extra
                 },
-                y: { title: { display: true, text: yAxisTitle, font: { size: 14, weight: 'bold' } } }
+                y: {
+                    title: { 
+                        display: true, 
+                        text: yAxisTitle, 
+                        font: { size: 14, weight: 'bold' } 
+                    }
+                }
+            },
+            layout: {
+                padding: {
+                    right: 20 // Adicionar padding à direita para os datalabels
+                }
             },
             interaction: { intersect: false, mode: 'index' },
             onClick: () => this.expandChart(chartType, chartTitle, this.charts[chartType])
@@ -1576,13 +1620,14 @@ class ChartManager {
                 datalabels: {
                     display: true,
                     anchor: 'end',
-                    align: 'top',
+                    align: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                     borderColor: 'rgba(0, 0, 0, 0.1)',
                     borderRadius: 4,
                     borderWidth: 1,
                     padding: 4,
                     font: { size: 11, weight: 'bold' },
+                    color: '#000',
                     formatter: (value) => value > 0 ? value : ''
                 }
             },
